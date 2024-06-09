@@ -1,0 +1,27 @@
+FROM debian:bookworm
+
+ENV LFS=/mnt/lfs
+
+WORKDIR /opt/lfs
+
+ADD version-check.sh version-check.sh
+
+RUN bash version-check.sh
+
+RUN apt-get update && apt-get upgrade && apt-get install --no-install-recommends -y \
+    vim \
+    binutils \
+    bison \
+    gawk \
+    gcc \
+    g++ \
+    m4 \
+    make \
+    patch \
+    python3 \
+    texinfo \
+    xz-utils \
+    wget \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN ln -sf /usr/bin/bash /usr/bin/sh
