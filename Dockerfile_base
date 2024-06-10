@@ -24,4 +24,6 @@ RUN apt-get update && apt-get upgrade && apt-get install --no-install-recommends
     wget \
   && rm -rf /var/lib/apt/lists/*
 
-RUN ln -sf /usr/bin/bash /usr/bin/sh
+RUN ln -sf /usr/bin/bash /usr/bin/sh && \
+  ln -sf /usr/bin/awk /usr/bin/gawk && \
+  ln -sf /usr/bin/yacc /usr/bin/bison
