@@ -8,7 +8,8 @@ ADD version-check.sh version-check.sh
 
 RUN bash version-check.sh
 
-RUN apt-get update && apt-get upgrade && apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get upgrade && apt install --no-install-recommends -y \
+    ca-certificates  \    
     vim \
     binutils \
     bison \
@@ -22,8 +23,10 @@ RUN apt-get update && apt-get upgrade && apt-get install --no-install-recommends
     texinfo \
     xz-utils \
     wget \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && apt autoclean && apt autoremove 
 
 RUN ln -sf /usr/bin/bash /usr/bin/sh && \
-  ln -sf /usr/bin/awk /usr/bin/gawk && \
+  #seems to be the same file now?
+  # ln -sf /usr/bin/awk /usr/bin/gawk && \
   ln -sf /usr/bin/yacc /usr/bin/bison
